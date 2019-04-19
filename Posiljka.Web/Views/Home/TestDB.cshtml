@@ -1,0 +1,16 @@
+﻿@using MyApp.Data.EF
+@model MyApp.Data.EF.MyContext
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Test DB - row count</h2>
+
+Kategorija: @Model.Kategorija.Count() <br />
+Korisnik: @Model.Korisnik.Count() <br />
+Vijesti: @Model.Vijest.Count() <br />
+
+
+@Html.ActionLink("Back", "Index")

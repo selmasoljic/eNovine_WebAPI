@@ -1,0 +1,44 @@
+﻿@using MyApp.Web.Helper
+@using MyApp.Web.Helper.mvc
+@using MyApp.Web.ViewModels
+@model MyApp.Web.ViewModels.SesijaIndexVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Aktivne sesije za korisnika @Context.GetLogiraniKorisnik().KorisnickoIme</h2>
+
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Vrijeme</th>
+        <th>Device info</th>
+        <th>Ip adresa</th>
+        <th></th>
+        <th>Akcija</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var x in Model.Rows)
+    {
+        <tr>
+            <td>@x.VrijemeLogiranja 
+              
+            </td>
+            <td>@x.deviceInfo </td>
+            <td>@x.IpAdresa</td>
+            <td>
+                @if (x.token == Model.TrenutniToken)
+                {
+                    <strong>(trenutna sesija)</strong>
+                }
+            </td>
+            <td>
+                <a asp-action="Obrisi" asp-route-token="@x.token" class="btn btn-danger">Obrisi</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
